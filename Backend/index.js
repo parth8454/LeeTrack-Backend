@@ -12,7 +12,7 @@ require('./models/db');
 const port = 9090 || process.env.PORT;
 
 app.use(bodyparser.json());
-app.use(express.json());    
+app.use(express.json());
 app.use(cors({
     origin:`${process.env.FRONTEND_URL}`,
     methods:['GET','POST','PUT','DELETE'],
