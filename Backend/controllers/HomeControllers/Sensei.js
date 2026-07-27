@@ -34,11 +34,17 @@ const ask_sensei = async(req,res) =>{
 
         response.data.pipe(res);
 
-    }catch(error){
+    } catch(error) {
+        // 1. Print the actual error safely to the Render console
+        console.error("💥 AI Connection Error:", error.message);
+        if (error.response) {
+            console.error("AI Engine Details:", error.response.status, error.response.statusText);
+        }
 
-        res.status(500).json({error: "Sensei is currently meditating", detail: error})
+        // 2. Send the error safely to the React frontend via the stream
         if (!res.writableEnded) {
-            res.write("data: Sensei is currently meditating\n\n");
+            res.write("data: Sensei is currently meditating (Connection Error).\n\n");
+            res.write("data: [DONE]\n\n");
             res.end();
         }
     }
