@@ -18,6 +18,7 @@ env_path = os.path.join(current_dir, ".env")
 env_vars = dotenv_values(env_path)
 
 groq_key = env_vars.get("GROQ_API_KEY")
+backend = env_vars.get("BACKEND_URL")
 
 class SenseiState(MessagesState):
 
@@ -59,6 +60,8 @@ async def Sensei_node(state: SenseiState):
     Use emojis in your response.
                                   
     The user you are talking to has the email: {email}.
+
+    you must use backend : {backend}.
     
     CRITICAL RULES:
     1. CONVERSATION: If the user just says "hello", "hi", or makes small talk, DO NOT use any tools. Just reply with a friendly greeting!

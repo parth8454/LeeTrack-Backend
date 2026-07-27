@@ -2,19 +2,10 @@ from langchain.tools import tool
 import requests
 from langchain_community.tools import DuckDuckGoSearchResults
 from dotenv import load_dotenv,dotenv_values
-import os
 
-load_dotenv()
-
-current_dir = os.path.dirname(os.path.abspath(__file__))
-env_path = os.path.join(current_dir, ".env")
-
-env_vars = dotenv_values(env_path)
-
-backend = env_vars.get("BACKEND_URL")
 
 @tool
-def get_stats(email: str) -> dict:
+def get_stats(email: str,backend: str) -> dict:
     """
     Fetches the current LeetCode statistics and progress for a given user.
     Use this tool BEFORE giving advice to understand the user's current skill level, 
@@ -30,7 +21,7 @@ def get_stats(email: str) -> dict:
         
         # We return the data so the LLM can read it and formulate an answer
         return data
-        
+    
     except requests.exceptions.RequestException as e:
         return {"error": f"Failed to fetch data from LeeTrack backend: {str(e)}"}
     
