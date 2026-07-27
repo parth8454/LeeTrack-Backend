@@ -1,0 +1,390 @@
+/* =========================================================
+   AI SENSEI: DARK AURORA EDITION (matches Home.css tokens)
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Quicksand:wght@500;700&display=swap');
+
+.sensei-page-unique {
+    --bg-base: #06080f;
+    --panel-bg: rgba(13, 17, 28, 0.6);
+    --panel-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #ffffff;
+    --text-secondary: #8b949e;
+
+    /* Official LeetCode Colors */
+    --lc-easy: #00b8a3;
+    --lc-easy-bg: rgba(0, 184, 163, 0.1);
+    --lc-medium: #ffc01e;
+    --lc-medium-bg: rgba(255, 192, 30, 0.1);
+    --lc-hard: #ff375f;
+    --lc-hard-bg: rgba(255, 55, 95, 0.1);
+    --lc-brand: #ffa116; /* LeetCode Orange */
+
+    height: 100vh;
+    background-color: var(--bg-base);
+    background-image: url('../../src/assets/wallpaperflare.com_wallpaper\ \(2\).jpg') !important;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+}
+
+/* Vignette Overlay, matches every other page */
+.sensei-page-unique::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, #000000 120%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.sensei-page-unique .main-layout {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    z-index: 1;
+}
+
+/* -----------------------------------------
+   1. CONTENT AREA + HEADER
+   (sidebar styling now lives in Sidebar.css)
+----------------------------------------- */
+.sensei-page-unique .content-area {
+    flex: 1;
+    min-height: 0;
+    padding: 50px;
+    overflow: hidden;
+    display: flex;
+}
+
+.sensei-page-unique .section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0;
+    letter-spacing: -1px;
+    font-family: 'Quicksand', sans-serif;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.sensei-chat-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    height: 100%;
+    animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.sensei-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.sensei-status-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid var(--panel-border);
+    background: var(--panel-bg);
+}
+
+.sensei-status-pill.ready { color: var(--lc-easy); }
+.sensei-status-pill.busy { color: var(--lc-brand); }
+
+.sensei-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 8px currentColor;
+}
+
+.sensei-status-pill.busy .sensei-status-dot {
+    animation: statusPulse 1.2s ease-in-out infinite;
+}
+
+/* -----------------------------------------
+   3. CHAT CARD (mirrors stats-display-card)
+----------------------------------------- */
+.sensei-chat-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    background: var(--panel-bg);
+    backdrop-filter: blur(25px);
+    border: 1px solid var(--panel-border);
+    border-radius: 28px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.sensei-messages-area {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 36px 36px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.sensei-messages-area::-webkit-scrollbar { width: 6px; }
+.sensei-messages-area::-webkit-scrollbar-track { background: transparent; }
+.sensei-messages-area::-webkit-scrollbar-thumb {
+    background: rgba(255, 161, 22, 0.25);
+    border-radius: 10px;
+}
+.sensei-messages-area::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 161, 22, 0.45);
+}
+
+/* -----------------------------------------
+   4. MESSAGE BUBBLES
+----------------------------------------- */
+.sensei-message-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    max-width: 100%;
+    opacity: 0;
+    animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.sensei-message-row.user {
+    justify-content: flex-end;
+}
+
+.sensei-message-row.sensei {
+    justify-content: flex-start;
+}
+
+.sensei-avatar {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    background: radial-gradient(circle, rgba(255, 161, 22, 0.15) 0%, rgba(255, 161, 22, 0.02) 70%);
+    border: 1px solid rgba(255, 161, 22, 0.25);
+    box-shadow: 0 0 12px rgba(255, 161, 22, 0.15);
+}
+
+.sensei-message-bubble {
+    max-width: 70%;
+    padding: 14px 20px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.sensei-message-bubble.user {
+    background: var(--text-primary);
+    color: #0a0c10;
+    font-weight: 600;
+    border-bottom-right-radius: 6px;
+}
+
+.sensei-message-bubble.sensei {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--panel-border);
+    color: var(--text-primary);
+    border-bottom-left-radius: 6px;
+}
+
+/* Typing dots, shown inside the live sensei bubble */
+.sensei-typing-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 0;
+}
+
+.sensei-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--lc-brand);
+    box-shadow: 0 0 8px var(--lc-brand);
+    animation: dotBounce 1.1s ease-in-out infinite;
+}
+
+.sensei-dot:nth-child(2) { animation-delay: 0.15s; }
+.sensei-dot:nth-child(3) { animation-delay: 0.3s; }
+
+/* -----------------------------------------
+   5. ACTION INDICATOR (tool call status)
+----------------------------------------- */
+.sensei-action-row {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 50px;
+    opacity: 0;
+    animation: slideUpFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.sensei-action-bubble {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--lc-medium-bg);
+    border: 1px solid rgba(255, 192, 30, 0.25);
+    color: var(--lc-medium);
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.sensei-action-icon {
+    display: inline-block;
+    animation: gearSpin 2s linear infinite;
+}
+
+/* -----------------------------------------
+   6. INPUT AREA
+----------------------------------------- */
+.sensei-input-area {
+    padding: 20px 28px 28px;
+    border-top: 1px solid var(--panel-border);
+}
+
+.sensei-chat-form {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.sensei-chat-input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+.sensei-chat-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.sensei-chat-input:focus {
+    border-color: rgba(255, 161, 22, 0.4);
+    box-shadow: 0 0 0 4px rgba(255, 161, 22, 0.08);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.sensei-chat-input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.sensei-submit-btn {
+    background: var(--text-primary);
+    color: #000;
+    border: none;
+    padding: 16px 30px;
+    border-radius: 16px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    font-family: 'Quicksand', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.sensei-submit-btn:hover:not(:disabled) {
+    background: var(--lc-brand);
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(255, 161, 22, 0.4);
+    transform: scale(1.02);
+}
+
+.sensei-submit-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* -----------------------------------------
+   7. NAVBAR OVERRIDE (same as Home.css)
+----------------------------------------- */
+.sensei-page-unique .navbar,
+.sensei-page-unique nav {
+    background: rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    box-shadow: none !important;
+}
+
+/* -----------------------------------------
+   8. KEYFRAMES
+----------------------------------------- */
+@keyframes slideUpFade {
+    0% { opacity: 0; transform: translateY(16px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes dotBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+    30% { transform: translateY(-5px); opacity: 1; }
+}
+
+@keyframes gearSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* -----------------------------------------
+   9. RESPONSIVE
+----------------------------------------- */
+@media (max-width: 1100px) {
+    /* Sidebar's own responsive rules live in Sidebar.css */
+}
+
+@media (max-width: 768px) {
+    .sensei-page-unique .content-area {
+        padding: 20px;
+    }
+    .sensei-message-bubble {
+        max-width: 85%;
+    }
+    .sensei-messages-area {
+        padding: 24px 20px 12px;
+    }
+    .sensei-input-area {
+        padding: 16px 20px 20px;
+    }
+}

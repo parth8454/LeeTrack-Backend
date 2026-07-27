@@ -12,7 +12,7 @@ const Navbar = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('username');
         handleSuccess('Logged out! See you soon. 🕯️');
-        setTimeout(() => navigate('/login'), 1000);
+        setTimeout(() => navigate('/login'),500);
     };
 
     return (

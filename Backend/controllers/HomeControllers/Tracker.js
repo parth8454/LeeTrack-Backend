@@ -51,10 +51,10 @@ const getLeetCodeStats = async(req,res) => {
             console.log(`Stats are not stored in DB    error : ${err}`);
         }
 
-        return res.status(200).json({message:'le bhai tere stats',stats:stats,success:true});
+        return res.status(200).json({message:'Here are your leetcode stats',stats:stats,success:true});
 
     }catch(err){
-        return res.status(403).json({message:"bhai nhi mil pye tere stats",success:false});
+        return res.status(403).json({message:"We are unable to fetch your stats, kindly recheck your leetcode username",success:false});
     }}
 };
 

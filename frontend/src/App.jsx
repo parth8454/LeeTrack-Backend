@@ -12,6 +12,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import ResetPassOTP from './Pages/AuthPages/ResetPassOTP'
 import Profile from './Pages/HomePages/Profile'
 import About from './Pages/HomePages/About'
+import SenseiChat from './Pages/HomePages/chat'
+import Leaderboard from './Pages/HomePages/Leaderboard'
 
 function App() {
 
@@ -30,11 +32,14 @@ function App() {
 
       <Route path="/login" element={<Login/>}/>
       <Route path="/Signup" element={<Signup/>}/>
+      <Route path="/chat" element={<SenseiChat/>}/>
       <Route path='/Signup/verifyOTP' element={<Otpverify/>}/>
       <Route path="/login/forgot_pass" element={<ForgotPass/>}/>
       <Route path='/login/forgot_pass/ResetPassOTP' element={<ResetPassOTP/>}/>
       <Route path="/login/reset_pass" element={<ResetPass/>}/>
       <Route path="/home" element={<PrivateRoute> <Home /> </PrivateRoute>} />
+      <Route path="/home/leaderboard" element={<PrivateRoute> <Leaderboard /> </PrivateRoute>} />
+      <Route path="/home/sensei" element={<PrivateRoute> <SenseiChat /> </PrivateRoute>} />
       <Route path="/home/profile" element={<PrivateRoute> <Profile /> </PrivateRoute>} />
       <Route path="/home/About" element={<PrivateRoute><About/></PrivateRoute>}/>
 

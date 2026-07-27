@@ -9,6 +9,8 @@ const EmailValidation = require('../middlewares/LoginValidations/RecoveryValidat
 const Send_rcvry_otp = require('../controllers/loginControllers/Send_Rcvry_otp');
 const Verify_recovery_OTP = require('../middlewares/LoginValidations/Verify_recovery_otp');
 const Set_Up_New_Pass = require('../controllers/loginControllers/NewPass');
+
+
 const AuthRouter = require('express').Router();
 
 AuthRouter.post('/signup',signupValidation_1,SignupValidation_2,OTPbhejna);
@@ -18,6 +20,5 @@ AuthRouter.post('/login',loginValidation,login);
 AuthRouter.post('/login/passRecovery',EmailValidation,Send_rcvry_otp);
 AuthRouter.post('/login/otpverify',Verify_recovery_OTP);
 AuthRouter.post('/login/reset_pass',Set_Up_New_Pass);
-
 
 module.exports = AuthRouter;
