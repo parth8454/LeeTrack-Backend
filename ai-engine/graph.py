@@ -12,13 +12,8 @@ import os
 
 load_dotenv()
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-env_path = os.path.join(current_dir, ".env")
-
-env_vars = dotenv_values(env_path)
-
-groq_key = env_vars.get("GROQ_API_KEY")
-backend = env_vars.get("BACKEND_URL")
+groq_key = os.get("GROQ_API_KEY")
+backend = os.get("BACKEND_URL")
 
 class SenseiState(MessagesState):
 
