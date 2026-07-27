@@ -12,8 +12,8 @@ import os
 
 load_dotenv()
 
-groq_key = os.get("GROQ_API_KEY")
-backend = os.get("BACKEND_URL")
+groq_key = os.getenv("GROQ_API_KEY")
+backend = os.getenv("BACKEND_URL")
 
 class SenseiState(MessagesState):
 
