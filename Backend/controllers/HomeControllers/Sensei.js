@@ -15,7 +15,7 @@ const ask_sensei = async(req,res) =>{
 
             const response = await axios({
             method: 'post',
-            url: 'http://localhost:8000/api/chat', 
+            url: `${process.env.AI}/api/chat`, 
             data: { email: email, message: message },
             responseType: 'stream' 
         });
