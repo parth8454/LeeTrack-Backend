@@ -1,7 +1,5 @@
 # LeeTrack 🚀
 
-**Live Platform:** [leetrack.vercel.app] ----> (https://leetrrack.vercel.app/) 
-
 ## About The Project
 LeeTrack is a production-ready, full-stack web application designed to track LeetCode progress and foster healthy competition among college peers. What started as a personal utility is now a live platform serving active users. It provides them with real-time coding statistics, a global leaderboard, and instant updates on upcoming competitive programming battles.
 
