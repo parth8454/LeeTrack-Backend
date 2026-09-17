@@ -27,7 +27,7 @@ class SenseiState(MessagesState):
 # )
 
 sensei = ChatGroq(
-    model="llama-3.3-70b-versatile", 
+    model="qwen/qwen3.8-27b", 
     temperature=0.0,
     api_key=groq_key
 )
